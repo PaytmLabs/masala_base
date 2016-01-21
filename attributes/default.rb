@@ -42,6 +42,7 @@ default['masala_base']['machine_tags']['owner'] = 'no_one'
 
 # Tell poise python to use system packages
 override['poise-python']['provider'] = 'system'
+override['poise-python']['options']['pip_version'] = '7.1.2'
 
 # New local defaults for included cookbooks
 default['system']['upgrade_packages_at_compile'] = false

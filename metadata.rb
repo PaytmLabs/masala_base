@@ -1,7 +1,7 @@
 name             'masala_base'
 maintainer       'Joe Hohertz'
 maintainer_email 'jhohertz@gmail.com'
-license          'All rights reserved'
+license          'Apache 2.0'
 description      'Installs/Configures masala_base'
 long_description 'Installs/Configures masala_base'
 version          '0.1.0'
