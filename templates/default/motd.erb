@@ -1,0 +1,19 @@
+
+ Environment: <%= node.chef_environment %>
+ Application: <%= node.masala_base.machine_tags.application %>
+ Role: <%= node.masala_base.machine_tags.role %>
+ Cluster: <%= node.masala_base.machine_tags.cluster %>
+ Owner: <%= node.masala_base.machine_tags.owner %>
+<% if node.masala_base.machine_tags.has_key?('index') %>
+ Index: <%= node.masala_base.machine_tags.index %>
+<% end %>
+ 
+ Chef run List for this node:
+<% node.run_list.each do |item| %>
+     - <%= item %>
+<% end %>
+
+ ************************************************************************
+ THIS SERVER IS MANAGED BY CHEF! *ALL* CHANGES *MUST* BE MANAGED BY CHEF!
+ ************************************************************************
+

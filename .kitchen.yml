@@ -1,0 +1,73 @@
+---
+driver:
+  name: vagrant
+
+provisioner:
+  name: chef_zero
+  require_chef_omnibus: 12.5.1
+  environments_path: ./test/environments
+  data_bags_path: ./test/data_bags
+  client_rb:
+    environment: kitchen
+
+platforms:
+  - name: centos67
+    driver_config:
+      box: boxcutter/centos67
+    attributes:
+      system:
+        primary_interface: eth1
+  - name: centos71
+    driver_config:
+      box: boxcutter/centos71
+    attributes:
+      system:
+        primary_interface: enp0s8
+  - name: centos72
+    driver_config:
+      box: boxcutter/centos72
+    attributes:
+      system:
+        primary_interface: enp0s8
+  - name: ubuntu1404
+    driver_config:
+      box: boxcutter/ubuntu1404
+    attributes:
+      system:
+        primary_interface: eth1
+  - name: ubuntu1504
+    driver_config:
+      box: boxcutter/ubuntu1504
+    attributes:
+      system:
+        primary_interface: eth1
+  - name: debian82
+    driver_config:
+      box: boxcutter/debian82
+    attributes:
+      system:
+        primary_interface: eth1
+
+suites:
+  - name: default
+    run_list: ["recipe[masala_base]", "recipe[masala_ldap::server]"]
+    driver:
+      #vm_hostname: false
+      network:
+      - ["private_network", {ip: "10.10.10.10"}]
+      customize:
+        memory: 512
+        cpus: 1
+    attributes:
+      system:
+        short_hostname: 'base-test'
+      openldap:
+        basedn: dc=masalatest,dc=com
+        rootpw: '{SSHA}ga4ROYIW/lrpyaNCJ2tJp+3UHg8Tq6eU'
+        server: localhost
+        slapd_master: 10.10.10.10
+        tls_enabled: false
+        tls_checkpeer: false
+      masala_ldap:
+        rootpw_clear: devuser
+
