@@ -40,6 +40,9 @@ default['masala_base']['machine_tags']['cluster'] = 'no_name'
 default['masala_base']['machine_tags']['role'] = 'not_defined'
 default['masala_base']['machine_tags']['owner'] = 'no_one'
 
+# A hash of optional extra sudo rules to install
+default['masala_base']['sudo.d'] = {}
+
 # Tell poise python to use system packages
 override['poise-python']['provider'] = 'system'
 override['poise-python']['options']['pip_version'] = '7.1.2'
@@ -63,6 +66,4 @@ EOF
 
 # sysctl -w net.ipv4.tcp_mtu_probing=1
 default['sysctl']['params']['net']['ipv4']['tcp_mtu_probing'] = "1"
-#node['sysctl']['params']['']['']['']['']['']['']
-#node['sysctl']['params']['']['']['']['']['']['']
-#node['sysctl']['params']['']['']['']['']['']['']
+

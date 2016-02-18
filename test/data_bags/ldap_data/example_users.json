@@ -1,4 +1,5 @@
 {
+  "id": "ldap_user_bag_example", 
   "sudoers": {
     "%admins": {
       "option": [
@@ -24,10 +25,9 @@
       ]
     }
   }, 
-  "id": "ldap_user_bag_example", 
   "groups": {
-    "admins": {
-      "gid_number": 1001, 
+    "adm-vagrant": {
+      "gid_number": 950, 
       "members": [
         "vagrantldap"
       ]

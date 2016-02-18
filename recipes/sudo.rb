@@ -28,3 +28,10 @@ end
 
 include_recipe 'sudo'
 
+node['masala_base']['sudo.d'].each do |name, cfg|
+  sudo name do
+    cfg.each do |method, value|
+      send(method, value)
+    end
+  end
+end
