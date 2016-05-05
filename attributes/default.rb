@@ -67,3 +67,6 @@ EOF
 # sysctl -w net.ipv4.tcp_mtu_probing=1
 default['sysctl']['params']['net']['ipv4']['tcp_mtu_probing'] = "1"
 
+# set fqdn for datadog
+default['datadog']['hostname'] = node['system']['short_hostname'] + '.' + node['system']['domain_name']
+
