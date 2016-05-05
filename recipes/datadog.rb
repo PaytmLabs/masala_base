@@ -27,7 +27,8 @@ if node['masala_base']['dd_enable'] and not node['masala_base']['dd_api_key'].ni
       "application:#{node['masala_base']['machine_tags']['application']}",
       "cluster:#{node['masala_base']['machine_tags']['cluster']}",
       "role:#{node['masala_base']['machine_tags']['role']}",
-      "owner:#{node['masala_base']['machine_tags']['owner']}"
+      "owner:#{node['masala_base']['machine_tags']['owner']}",
+      "dc:#{node['masala_base']['machine_tags']['dc']}"
   ]
   tags.concat( node['masala_base']['dd_extra_tags'] )
   node.set['datadog']['tags'] = tags.join(", ")

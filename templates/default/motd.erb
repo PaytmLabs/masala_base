@@ -4,6 +4,7 @@
  Role: <%= node.masala_base.machine_tags.role %>
  Cluster: <%= node.masala_base.machine_tags.cluster %>
  Owner: <%= node.masala_base.machine_tags.owner %>
+ Datacenter: <%= node.masala_base.machine_tags.dc %>
 <% if node.masala_base.machine_tags.has_key?('index') %>
  Index: <%= node.masala_base.machine_tags.index %>
 <% end %>

@@ -126,6 +126,12 @@ default['masala_base']['dd_extra_tags'] = []
     <td>One of the mandatory tags, owner specifies a stakeholder interest in a system. Usually this is the entity responsible for the costs of running the system.</td>
     <td><tt>no_name</tt></td>
   </tr>
+  <tr>
+    <td><tt>['masala_base']['machine_tags']['dc']</tt></td>
+    <td>String</td>
+    <td>One of the mandatory tags, dc specifies the datacenter location of a system.</td>
+    <td><tt>no_name</tt></td>
+  </tr>
 
   <tr>
     <td><tt>['masala_base']['issue_text']</tt></td>

@@ -39,6 +39,7 @@ default['masala_base']['machine_tags']['application'] = 'no_name'
 default['masala_base']['machine_tags']['cluster'] = 'no_name'
 default['masala_base']['machine_tags']['role'] = 'not_defined'
 default['masala_base']['machine_tags']['owner'] = 'no_one'
+default['masala_base']['machine_tags']['dc'] = 'not_defined'
 
 # A hash of optional extra sudo rules to install
 default['masala_base']['sudo.d'] = {}
