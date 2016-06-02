@@ -17,6 +17,12 @@ platforms:
     attributes:
       system:
         primary_interface: eth1
+  - name: centos68
+    driver_config:
+      box: bmcgonigle/centos68
+    attributes:
+      system:
+        primary_interface: eth1
   - name: centos71
     driver_config:
       box: boxcutter/centos71
@@ -44,6 +50,12 @@ platforms:
   - name: debian82
     driver_config:
       box: boxcutter/debian82
+    attributes:
+      system:
+        primary_interface: eth1
+  - name: debian84
+    driver_config:
+      box: debian/jessie64
     attributes:
       system:
         primary_interface: eth1
