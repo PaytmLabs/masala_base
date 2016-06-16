@@ -16,7 +16,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-if node['masala_base']['img_build'] && node['masala_base']['img_type'] == 'ami'
+if node['masala_base']['img_build'] && node['masala_base']['img_type'] == 'amazon-ebs'
   if (node['platform_family'] == 'rhel' && node['platform_version'].to_f < 7.0) || node['platform'] == 'debian'
     include_recipe 'masala_base::rootfs_resize_initrd'
   end
