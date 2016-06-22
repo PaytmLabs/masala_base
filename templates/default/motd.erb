@@ -1,5 +1,5 @@
 
- Environment: <%= node.chef_environment %>
+ Environment: <%= node.masala_base.machine_tags.environment %>
  Application: <%= node.masala_base.machine_tags.application %>
  Role: <%= node.masala_base.machine_tags.role %>
  Cluster: <%= node.masala_base.machine_tags.cluster %>
