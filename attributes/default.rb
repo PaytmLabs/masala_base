@@ -31,6 +31,7 @@ default['masala_base']['dd_handler_enable'] = false
 default['masala_base']['dd_app_key'] = nil
 # array of optional data dog tags to add to primary ones
 default['masala_base']['dd_extra_tags'] = []
+default['masala_base']['dd_proc_mon'] = {}
 
 # These are meant to be injected from the provisioner
 # Defaults are at best ok for basic testing of the base

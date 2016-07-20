@@ -1,6 +1,6 @@
 #
 # Cookbook Name:: masala_base
-# Recipe:: openssh
+# Recipe:: ntp
 #
 # Copyright 2016, Paytm Labs
 #
@@ -16,23 +16,33 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# Other recipes, like auth_sssd, will set some values
-#node.default['openssh']['server']['']      = ''
+include_recipe 'ntp'
 
-include_recipe 'openssh'
+if node['masala_base']['dd_enable'] and not node['masala_base']['dd_api_key'].nil?
+  node.set['datadog']['ntp']['instances'] = [
+    {
+      host: 'localhost',
+      port: 'ntp',
+      version: '3',
+      offset_threshold: '60',
+      timeout: '5'
+    }
+  ]
+  include_recipe 'datadog::ntp'
+end
 
 # register process monitor
-ruby_block "datadog-process-monitor-sshd" do
+ruby_block "datadog-process-monitor-ntpd" do
   block do
-    node.set['masala_base']['dd_proc_mon']['sshd'] = {
-      search_string: ['sshd'],
+    node.set['masala_base']['dd_proc_mon']['ntpd'] = {
+      search_string: ['ntpd'],
       exact_match: true,
       thresholds: {
-       warning: [1, 5],
-       critical: [1, 10]
+       critical: [1, 1]
       }
     }
   end
   only_if { node['masala_base']['dd_enable'] and not node['masala_base']['dd_api_key'].nil? }
   notifies :run, 'ruby_block[datadog-process-monitors-render]'
 end
+

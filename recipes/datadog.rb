@@ -50,17 +50,24 @@ if node['masala_base']['dd_enable'] and not node['masala_base']['dd_api_key'].ni
     include_recipe 'datadog::dd-handler'
   end
 
-  node.set['datadog']['ntp']['instances'] = [
-      {
-          host: 'localhost',
-          port: 'ntp',
-          version: '3',
-          offset_threshold: '60',
-          timeout: '5'
-
-      }
-  ]
-  include_recipe 'datadog::ntp'
+  # setup deferred action for process monitoring
+  ruby_block "datadog-process-monitors-render" do
+    block do
+      if not node['masala_base']['dd_proc_mon'].empty?
+        inst = []
+        node['masala_base']['dd_proc_mon'].each do |name, cfg|
+          mon = {}.deep_merge(cfg)
+          mon['name'] = name
+          inst << mon
+        end
+        node.set['datadog']['process']['instances'] = inst
+        dd_proc = Chef::Resource::DatadogMonitor.new('process', run_context)
+        dd_proc.instances = node['datadog']['process']['instances']
+        dd_proc.run_action(:add)
+      end
+    end
+    action :nothing
+  end
 
 end
 

@@ -38,21 +38,21 @@ include_recipe 'system::timezone'
 include_recipe 'system::hostname' if not node['masala_base']['img_build']
 #include_recipe 'locale'
 include_recipe 'system::upgrade_packages'
-include_recipe 'masala_base::install_packages'
-include_recipe 'masala_base::platform_fixes'
-include_recipe 'ntp'
-include_recipe 'masala_ldap::auth_sssd' if node['masala_base']['enable_sssd_ldap']
 include_recipe 'rsyslog'
 include_recipe 'logrotate'
+include_recipe 'masala_base::install_packages'
+include_recipe 'masala_base::platform_fixes'
+include_recipe 'masala_ldap::auth_sssd' if node['masala_base']['enable_sssd_ldap']
 include_recipe 'masala_base::sudo'
 include_recipe 'masala_base::admin_user'
-include_recipe 'masala_base::openssh'
 include_recipe 'java' if node['masala_base']['install_jdk']
 
 include_recipe 'poise-python'
 python_package 'awscli'
 
 include_recipe 'masala_base::datadog'
+include_recipe 'masala_base::openssh'
+include_recipe 'masala_base::ntp'
 include_recipe 'masala_base::motd'
 include_recipe 'masala_base::cloud'
 
