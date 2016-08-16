@@ -22,17 +22,18 @@
 include_recipe 'openssh'
 
 # register process monitor
-ruby_block "datadog-process-monitor-sshd" do
-  block do
-    node.set['masala_base']['dd_proc_mon']['sshd'] = {
-      search_string: ['sshd'],
-      exact_match: true,
-      thresholds: {
-       warning: [1, 5],
-       critical: [1, 10]
+if node['masala_base']['dd_enable'] && !node['masala_base']['dd_api_key'].nil?
+  ruby_block "datadog-process-monitor-sshd" do
+    block do
+      node.set['masala_base']['dd_proc_mon']['sshd'] = {
+        search_string: ['sshd'],
+        exact_match: true,
+        thresholds: {
+         warning: [1, 5],
+         critical: [1, 10]
+        }
       }
-    }
+    end
+    notifies :run, 'ruby_block[datadog-process-monitors-render]'
   end
-  only_if { node['masala_base']['dd_enable'] and not node['masala_base']['dd_api_key'].nil? }
-  notifies :run, 'ruby_block[datadog-process-monitors-render]'
 end

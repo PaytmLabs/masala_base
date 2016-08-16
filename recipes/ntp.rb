@@ -18,7 +18,7 @@
 
 include_recipe 'ntp'
 
-if node['masala_base']['dd_enable'] and not node['masala_base']['dd_api_key'].nil?
+if node['masala_base']['dd_enable'] && !node['masala_base']['dd_api_key'].nil?
   node.set['datadog']['ntp']['instances'] = [
     {
       host: 'localhost',
@@ -29,20 +29,19 @@ if node['masala_base']['dd_enable'] and not node['masala_base']['dd_api_key'].ni
     }
   ]
   include_recipe 'datadog::ntp'
-end
 
-# register process monitor
-ruby_block "datadog-process-monitor-ntpd" do
-  block do
-    node.set['masala_base']['dd_proc_mon']['ntpd'] = {
-      search_string: ['ntpd'],
-      exact_match: true,
-      thresholds: {
-       critical: [1, 1]
+  # register process monitor
+  ruby_block "datadog-process-monitor-ntpd" do
+    block do
+      node.set['masala_base']['dd_proc_mon']['ntpd'] = {
+        search_string: ['ntpd'],
+        exact_match: true,
+        thresholds: {
+         critical: [1, 1]
+        }
       }
-    }
+    end
+    notifies :run, 'ruby_block[datadog-process-monitors-render]'
   end
-  only_if { node['masala_base']['dd_enable'] and not node['masala_base']['dd_api_key'].nil? }
-  notifies :run, 'ruby_block[datadog-process-monitors-render]'
 end
 

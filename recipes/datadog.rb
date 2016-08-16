@@ -18,7 +18,7 @@
 
 require 'uri'
 
-if node['masala_base']['dd_enable'] and not node['masala_base']['dd_api_key'].nil?
+if node['masala_base']['dd_enable'] && !node['masala_base']['dd_api_key'].nil?
   node.set['datadog']['api_key'] = node['masala_base']['dd_api_key']
   node.set['datadog']['application_key'] = node['masala_base']['dd_app_key']
   # pass the "5 tags", provided or forced by the provisioner, plus optional
