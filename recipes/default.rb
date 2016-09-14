@@ -55,9 +55,5 @@ include_recipe 'masala_base::openssh'
 include_recipe 'masala_base::ntp'
 include_recipe 'masala_base::motd'
 include_recipe 'masala_base::cloud'
-
-# FIXME: This is not nice, but presently needed until there is a managed story
-service 'iptables' do
-  action   [:disable, :stop]
-end
+include_recipe 'masala_base::firewall'
 
