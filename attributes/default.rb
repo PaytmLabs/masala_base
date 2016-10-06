@@ -53,6 +53,7 @@ override['poise-python']['options']['pip_version'] = '7.1.2'
 default['system']['upgrade_packages_at_compile'] = false
 default['system']['delay_network_restart'] = false
 default['openssh']['server']['banner'] = '/etc/issue.net'
+default['openssh']['server']['subsystem'] = 'sftp internal-sftp'
 
 default['masala_base']['issue_text'] = <<EOF
 
