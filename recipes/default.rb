@@ -43,8 +43,9 @@ include_recipe 'logrotate'
 include_recipe 'masala_base::install_packages'
 include_recipe 'masala_base::platform_fixes'
 include_recipe 'masala_ldap::auth_sssd' if node['masala_base']['enable_sssd_ldap']
+include_recipe 'masala_base::users'
+include_recipe 'masala_base::ulimit'
 include_recipe 'masala_base::sudo'
-include_recipe 'masala_base::admin_user'
 include_recipe 'java' if node['masala_base']['install_jdk']
 
 include_recipe 'poise-python'
