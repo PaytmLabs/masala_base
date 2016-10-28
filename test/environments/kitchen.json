@@ -10,12 +10,7 @@
       "dd_enable": true,
       "enable_sssd_ldap": true,
       "deploy_groups": ["sysusers"],
-      "sudo.d": {
-        "adm-vagrant": {
-          "group": "adm-vagrant",
-          "nopasswd": true
-        }
-      }
+      "deploy_sudoers": ["adm-vagrant"]
     },
     // locale disabled for now
     //"locale": {

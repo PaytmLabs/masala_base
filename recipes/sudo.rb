@@ -28,10 +28,12 @@ end
 
 include_recipe 'sudo'
 
-node['masala_base']['sudo.d'].each do |name, cfg|
+node['masala_base']['deploy_sudoers'].each do |name|
+  cfg = data_bag_item(node['masala_base']['sudoers_databag'], name)
   sudo name do
     cfg.each do |method, value|
-      send(method, value)
+      send(method, value) if method != 'id'
     end
   end
 end
+

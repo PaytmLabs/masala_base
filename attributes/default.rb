@@ -16,7 +16,9 @@ default['masala_base']['enable_auth_sssd'] = false
 
 default['masala_base']['users_databag'] = 'users'
 default['masala_base']['groups_databag'] = 'groups'
+default['masala_base']['sudoers_databag'] = 'sudoers'
 default['masala_base']['deploy_groups'] = []
+default['masala_base']['deploy_sudoers'] = []
 
 default['masala_base']['dd_enable'] = false
 default['masala_base']['dd_api_key'] = nil
@@ -34,9 +36,6 @@ default['masala_base']['machine_tags']['cluster'] = 'no_name'
 default['masala_base']['machine_tags']['role'] = 'not_defined'
 default['masala_base']['machine_tags']['owner'] = 'no_one'
 default['masala_base']['machine_tags']['dc'] = 'not_defined'
-
-# A hash of optional extra sudo rules to install
-default['masala_base']['sudo.d'] = {}
 
 # Tell poise python to use system packages
 override['poise-python']['provider'] = 'system'
