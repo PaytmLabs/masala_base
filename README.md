@@ -47,25 +47,23 @@ Please also see the documentation for the cookbooks included by masala_base. (Se
     <td><tt>true</tt></td>
   </tr>
   <tr>
-    <td><tt>['masala_base']['admin']['user']</tt></td>
+    <td><tt>['masala_base']['users_databag']</tt></td>
     <td>String</td>
-    <td>Login name for an admin user to setup on the system. Commonly used for setting up vagrant user in development images, but can be used to setup a common user as well.</td>
-    <td><tt>masala</tt></td>
+    <td>Databag to look to for group information</td>
+    <td><tt>users</tt></td>
   </tr>
   <tr>
-    <td><tt>['masala_base']['admin']['group']</tt></td>
+    <td><tt>['masala_base']['groups_databag']</tt></td>
     <td>String</td>
-    <td>Group name for admin user</td>
-    <td><tt>masala</tt></td>
+    <td>Databag to look to for user information</td>
+    <td><tt>groups</tt></td>
   </tr>
   <tr>
-    <td><tt>['masala_base']['admin']['ssh_pubkey']</tt></td>
-    <td>String</td>
-    <td>A publish SSH key that will be configured into the admin user's ~/.ssh/authorized_keys file.</td>
-    <td><tt>true</tt></td>
+    <td><tt>['masala_base']['deploy_groups']</tt></td>
+    <td>Array of strings</td>
+    <td>Group name(s) of users to deploy</td>
+    <td><tt>sysusers</tt></td>
   </tr>
-# array of optional data dog tags to add to primary ones
-default['masala_base']['dd_extra_tags'] = []
   <tr>
     <td><tt>['masala_base']['dd_enable']</tt></td>
     <td>Boolean</td>
