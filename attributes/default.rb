@@ -71,3 +71,8 @@ default['sysctl']['params']['net']['ipv4']['tcp_mtu_probing'] = "1"
 # set fqdn for datadog
 default['datadog']['hostname'] = node['system']['short_hostname'] + '.' + node['system']['domain_name']
 
+# have rsyslog listen on UDP port, localhost only by default:
+default['rsyslog']['server']                    = true
+default['rsyslog']['protocol']                  = 'udp'
+default['rsyslog']['bind']                      = '127.0.0.1'
+
