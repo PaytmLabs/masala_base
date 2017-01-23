@@ -52,9 +52,12 @@ default['openssh']['server']['syslog_facility'] = 'AUTHPRIV'
 default['openssh']['server']['gssapi_authentication'] = 'yes'
 default['openssh']['server']['gssapi_clean_up_credentials'] = 'yes'
 default['openssh']['server']['accept_env'] = 'LANG LC_CTYPE LC_NUMERIC LC_TIME LC_COLLATE LC_MONETARY LC_MESSAGES LC_PAPER LC_NAME LC_ADDRESS LC_TELEPHONE LC_MEASUREMENT LC_IDENTIFICATION LC_ALL LANGUAGE XMODIFIERS'
-default['openssh']['server']['ciphers'] = 'aes128-ctr,aes192-ctr,aes256-ctr,aes128-gcm@openssh.com,aes256-gcm@openssh.com,chacha20-poly1305@openssh.com'
 default['openssh']['server']['macs'] = 'hmac-sha1-etm@openssh.com,umac-64-etm@openssh.com,umac-128-etm@openssh.com,hmac-sha2-256-etm@openssh.com,hmac-sha2-512-etm@openssh.com,hmac-ripemd160-etm@openssh.com,hmac-sha1,umac-64@openssh.com,umac-128@openssh.com,hmac-sha2-256,hmac-sha2-512,hmac-ripemd160'
-
+if node['platform_family'] == 'rhel' && node['platform_version'].to_i < 7
+  default['openssh']['server']['ciphers'] = 'aes128-ctr,aes192-ctr,aes256-ctr'
+else
+  default['openssh']['server']['ciphers'] = 'aes128-ctr,aes192-ctr,aes256-ctr,aes128-gcm@openssh.com,aes256-gcm@openssh.com,chacha20-poly1305@openssh.com'
+end
 
 default['masala_base']['issue_text'] = <<EOF
 
