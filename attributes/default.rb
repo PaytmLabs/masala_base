@@ -50,6 +50,7 @@ default['openssh']['server']['protocol'] = '2'
 default['openssh']['server']['use_dns'] = 'no'
 default['openssh']['server']['syslog_facility'] = 'AUTHPRIV'
 default['openssh']['server']['gssapi_authentication'] = 'yes'
+default['openssh']['server']['x11_forwarding'] = 'no'
 default['openssh']['server']['gssapi_clean_up_credentials'] = 'yes'
 default['openssh']['server']['accept_env'] = 'LANG LC_CTYPE LC_NUMERIC LC_TIME LC_COLLATE LC_MONETARY LC_MESSAGES LC_PAPER LC_NAME LC_ADDRESS LC_TELEPHONE LC_MEASUREMENT LC_IDENTIFICATION LC_ALL LANGUAGE XMODIFIERS'
 if node['platform_family'] == 'rhel' && node['platform_version'].to_i < 7
